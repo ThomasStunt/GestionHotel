@@ -34,7 +34,8 @@ public class Game {
 
 	// Methods
 	public void play() {
-		System.out.println("---- Day n°" + nbTours + " ----"+"\n\t Actual score : "+h.getScore());
+		System.out.println("---- Day n°" + nbTours + " ----"
+				+ "\n\t Actual score : " + h.getScore());
 		String s = "\nWhat do you want to do ?"
 				+ "\n\t 1 - Welcome the new customers"
 				+ "`\n\t 2 - Check your bookings";

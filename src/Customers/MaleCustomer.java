@@ -10,18 +10,11 @@ public class MaleCustomer extends Customer {
 	// Constructor	
 	public MaleCustomer() {
 		super();
-		computeInc();
 		generateName();
-	}
-	
-	public MaleCustomer(String name) {
-		super(name);
-		computeInc();
 	}
 	
 	public MaleCustomer(String name, int age) {
 		super(name, age);
-		computeInc();
 	}
 
 	// Getters

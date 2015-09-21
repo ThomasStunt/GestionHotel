@@ -25,6 +25,12 @@ public class Customer {
 		this.age = age;
 		generateMoney();
 	}
+	
+	public Customer(String name, int age, int money) {
+		this.name=name;
+		this.age=age;
+		this.money=money;
+	}
 
 	// Getters
 	public String getName() {
