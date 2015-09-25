@@ -19,7 +19,7 @@ public class Hotel {
 	public ArrayList<Room> getLi() {
 		return this.li;
 	}
-	
+
 	public int getScore() {
 		return this.score;
 	}
@@ -28,7 +28,7 @@ public class Hotel {
 	public void setLi(ArrayList<Room> li) {
 		this.li = li;
 	}
-	
+
 	public void setScore(int score) {
 		this.score = score;
 	}
@@ -41,19 +41,20 @@ public class Hotel {
 			r.setCustomer(c);
 			System.out.println("\n" + c.getName() + " just booked room "
 					+ r.getName() + " for " + time + " days !\n");
-		} 
+		}
 	}
 
 	public void endBook(Room r) {
 		if (r.getBooked()) {
-			int time = r.getTime();
+			int time = r.getInitialTime();
 			int totalPrice = time * r.getPrice();
-			System.out.println("Thank you ! You must pay " + totalPrice
-					+ " € !");
+			System.out.println("The customer " + r.getC().getName()
+					+ " left the hotel. You earned " + totalPrice + " € !\n");
 			int moneyLeft = r.getCustomer().getMoney() - totalPrice;
-			this.setScore(this.getScore()+totalPrice);
+			this.setScore(this.getScore() + totalPrice);
 			r.getCustomer().setMoney(moneyLeft);
 			r.setCustomer(null);
+			r.setBooked(false);
 		}
 	}
 

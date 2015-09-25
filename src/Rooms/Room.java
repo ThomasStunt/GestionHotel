@@ -8,9 +8,11 @@ public class Room {
 	// Attributes
 	private String name;
 	private int price;
+	private int initialTime;
 	private int time;
 	private boolean booked;
 	private Customer c;
+	private int dayBooked;
 
 	// Constructor
 	public Room() {
@@ -18,7 +20,7 @@ public class Room {
 
 	public Room(String name) {
 		this.name = name;
-		this.price = new Random().nextInt(20) + 5;
+		this.price = new Random().nextInt(20) + 17;
 	}
 
 	// Getters
@@ -42,6 +44,18 @@ public class Room {
 		return this.c;
 	}
 
+	public int getDayBooked() {
+		return this.dayBooked;
+	}
+
+	public Customer getC() {
+		return this.c;
+	}
+
+	public int getInitialTime() {
+		return this.initialTime;
+	}
+
 	// Setters
 	public void setName(String name) {
 		this.name = name;
@@ -63,9 +77,22 @@ public class Room {
 		this.c = c;
 	}
 
+	public void setDayBooked(int dayBooked) {
+		this.dayBooked = dayBooked;
+	}
+
+	public void setC(Customer c) {
+		this.c = c;
+	}
+
+	public void setInitialTime(int initialTime) {
+		this.initialTime = initialTime;
+	}
+
 	// toString
 	public String toString() {
 		return "- Room " + this.getName() + " - " + this.getPrice()
-				+ " € / day - Time left : "+this.getTime();
+				+ " € / day - Initial time : " + this.getInitialTime()
+				+ " - Time left : " + this.getTime();
 	}
 }

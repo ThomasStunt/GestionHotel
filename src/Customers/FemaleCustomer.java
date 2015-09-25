@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class FemaleCustomer extends Customer {
 	// Attributes
-	private int dailyBuyings;
+	private int dailyLosts;
 	private FemaleNames names = new FemaleNames();
 
 	// Constructor
@@ -13,7 +13,7 @@ public class FemaleCustomer extends Customer {
 		computeBuy();
 		generateName();
 	}
-	
+
 	public FemaleCustomer(String name) {
 		super(name);
 		computeBuy();
@@ -25,21 +25,21 @@ public class FemaleCustomer extends Customer {
 	}
 
 	// Getters
-	public int getDailyBuyings() {
-		return this.dailyBuyings;
+	public int getDailyLosts() {
+		return this.dailyLosts;
 	}
 
 	// Setters
-	public void setDailyBuyings(int dailyBuyings) {
-		this.dailyBuyings = dailyBuyings;
+	public void setDailyLosts(int dailyLosts) {
+		this.dailyLosts = dailyLosts;
 	}
 
 	// Methods
 	public void computeBuy() {
 		Random r = new Random();
-		this.dailyBuyings = r.nextInt(45);
+		this.dailyLosts = r.nextInt(45);
 	}
-	
+
 	public void generateName() {
 		String name = names.pickName();
 		this.setName(name);
