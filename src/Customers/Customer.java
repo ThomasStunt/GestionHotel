@@ -7,29 +7,30 @@ public class Customer {
 	private String name;
 	private int age;
 	private int money = 125;
+	private boolean hasRoom = false;
 
 	// Constructors
 	public Customer() {
-		this.age = new Random().nextInt(25)+20;
+		this.age = new Random().nextInt(25) + 20;
 		generateMoney();
 	}
-	
+
 	public Customer(String name) {
-		this.name=name;
-		this.age=20;
+		this.name = name;
+		this.age = 20;
 		generateMoney();
 	}
-	
+
 	public Customer(String name, int age) {
 		this.name = name;
 		this.age = age;
 		generateMoney();
 	}
-	
+
 	public Customer(String name, int age, int money) {
-		this.name=name;
-		this.age=age;
-		this.money=money;
+		this.name = name;
+		this.age = age;
+		this.money = money;
 	}
 
 	// Getters
@@ -45,6 +46,10 @@ public class Customer {
 		return this.money;
 	}
 
+	public boolean getHasRoom() {
+		return this.hasRoom;
+	}
+
 	// Setters
 	public void setName(String name) {
 		this.name = name;
@@ -58,6 +63,10 @@ public class Customer {
 		this.money = money;
 	}
 
+	public void setHasRoom(boolean hasRoom) {
+		this.hasRoom = hasRoom;
+	}
+
 	// Methods
 	public void generateMoney() {
 		Random r = new Random();
@@ -67,6 +76,7 @@ public class Customer {
 
 	// toString
 	public String toString() {
-		return "" + this.name + " - " + this.age + " Yo - " + this.money + " €\n";
+		return "" + this.name + " - " + this.age + " Yo - " + this.money
+				+ " €\n";
 	}
 }

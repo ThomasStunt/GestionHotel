@@ -17,6 +17,7 @@ public class Game {
 	private Hotel h = new Hotel(g);
 	private int nbTours = 1;
 	private Customer c;
+	private int taxe = 250;
 
 	// Constructor
 	public Game() {
@@ -47,8 +48,12 @@ public class Game {
 	}
 
 	public void gameRound() {
+		if(nbTours%31 == 0) {
+			System.out.println("You have to pay the monthly taxe ! You just lost "+ taxe + " € !");
+			h.setMoney(h.getMoney()-taxe);
+		}
 		System.out.println("---- Day n°" + nbTours + " ----"
-				+ "\n\t Actual score : " + h.getScore() + "\n");
+				+ "\n\t Actual money : " + h.getMoney() + "\n");
 		String s = "What do you want to do ?"
 				+ "\n\t 1 - Welcome the new customers"
 				+ "`\n\t 2 - Check your bookings";
@@ -79,40 +84,44 @@ public class Game {
 						+ "\n\t 2 - Don't give " + c.getName() + " a room.");
 				String res = sc.nextLine();
 				if (res.equals("1")) {
-					System.out.println("\nWhich room do you want to give ?");
-					String room = sc.nextLine();
-					for (int i = 0; i < h.getLi().size(); i++) {
-						if (room.equals(h.getLi().get(i).getName())) {
-							for (int j = 0; j < h.getLi().size() - i; i++) {
-								if (h.getLi().get(i).getBooked()) {
-									System.out
-											.println("The room was already booked, so we booked the next one.");
-									h.book(h.getLi().get(i + j), c, d);
-									h.getLi().get(i + j).setDayBooked(nbTours);
-									h.getLi().get(i + j).setInitialTime(d);
-									nbCustomers--;
-								} else {
-									h.book(h.getLi().get(i), c, d);
-									h.getLi().get(i).setDayBooked(nbTours);
-									h.getLi().get(i).setInitialTime(d);
-									nbCustomers--;
-									break;
-								}
-							}
-						}
-					}
+					pickRoom(c, d);
+					nbCustomers--;
 				} else {
 					System.out.println();
 					nbCustomers--;
 				}
 			}
-			System.out.println("\nDay is over ! \n\n\n");
+			System.out.println("\nDay is over ! \n\n\n\n\n");
 			nbTours++;
 		} else if (s1.equals("2")) {
 			System.out.println("\n---- Check your bookings ---- \n" + "\n" + h);
+			gameRound();
 		} else {
 			System.out.println("Please type a correct answer\n");
 			gameRound();
+		}
+	}
+
+	public void pickRoom(Customer c, int d) {
+		System.out.println("\nWhich room do you want to give ?");
+		String room = sc.nextLine();
+		for (int i = 0; i < h.getLi().size(); i++) {
+			if (room.equals(h.getLi().get(i).getName())) {
+				for (int j = 0; j < h.getLi().size() - i; i++) {
+					while (!c.getHasRoom()) {
+						if (h.getLi().get(i).getBooked()) {
+							System.out
+									.println("The room was already booked, we booked the next possible room.\n");
+							break;
+						} else {
+							h.book(h.getLi().get(i), c, d);
+							h.getLi().get(i).setDayBooked(nbTours);
+							h.getLi().get(i).setInitialTime(d);
+							c.setHasRoom(true);
+						}
+					}
+				}
+			}
 		}
 	}
 }

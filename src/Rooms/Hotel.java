@@ -7,7 +7,7 @@ import Customers.Customer;
 public class Hotel {
 	// Attributes
 	private ArrayList<Room> li = new ArrayList<Room>();
-	private int score;
+	private int money = 1500;
 
 	// Constructors
 	public Hotel(ArrayList<Room> li) {
@@ -20,8 +20,8 @@ public class Hotel {
 		return this.li;
 	}
 
-	public int getScore() {
-		return this.score;
+	public int getMoney() {
+		return this.money;
 	}
 
 	// Setters
@@ -29,8 +29,8 @@ public class Hotel {
 		this.li = li;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public void setMoney(int money) {
+		this.money = money;
 	}
 
 	// Methods
@@ -51,10 +51,11 @@ public class Hotel {
 			System.out.println("The customer " + r.getC().getName()
 					+ " left the hotel. You earned " + totalPrice + " € !\n");
 			int moneyLeft = r.getCustomer().getMoney() - totalPrice;
-			this.setScore(this.getScore() + totalPrice);
+			this.setMoney(this.getMoney() + totalPrice);
 			r.getCustomer().setMoney(moneyLeft);
 			r.setCustomer(null);
 			r.setBooked(false);
+			r.setInitialTime(0);
 		}
 	}
 
